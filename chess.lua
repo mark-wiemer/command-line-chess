@@ -56,19 +56,19 @@ local function find_pawn(player, f_c, b)
     end
     for r_i = s, e, step do
         local row = b[r_i]
-        print('Checking ' .. to_chess(r_i, f_i))
+        -- print('Checking ' .. to_chess(r_i, f_i))
         local piece = row[f_i]
-        io.write('Found ')
-        if (piece) then
-            io.write(piece)
-        else
-            io.write('nil')
-        end
-        io.write('\n')
+        -- io.write('Found ')
+        -- if (piece) then
+        --     io.write(piece)
+        -- else
+        --     io.write('nil')
+        -- end
+        -- io.write('\n')
         if (piece and piece:sub(1, 1) == 'P' and piece:sub(2, 2) ==
                 tostring(player)) then
             local coord = to_chess(r_i, f_i)
-            print('Found pawn at ' .. coord)
+            -- print('Found pawn at ' .. coord)
             return coord
         end
     end
@@ -101,7 +101,7 @@ end
 
 local function play()
     local board = new_board()
-    print("Welcome to Command Line Chess :)\n")
+    print("Welcome to CLI Chess :)\n")
     while (true) do
         print_board(board)
         io.write('Next move (q to quit): ')
