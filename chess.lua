@@ -1,5 +1,5 @@
 -- b[1][2] is h2
-function new_board()
+local function new_board()
     return {
         {'R2', 'N2', 'B2', 'Q2', 'K2', 'B2', 'N2', 'R2'},
         {'P2', 'P2', 'P2', 'P2', 'P2', 'P2', 'P2', 'P2'}, {}, {}, {}, {},
@@ -8,7 +8,7 @@ function new_board()
     }
 end
 
-function print_board(b)
+local function print_board(b)
     for r = 1, 8 do
         for c = 1, 8 do
             local s = b[r][c] or nil
@@ -20,16 +20,21 @@ function print_board(b)
     io.write('\n')
 end
 
-function to_f_c(f_i) return ({'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'})[f_i] end
+local function to_f_c(f_i) return ({'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'})[f_i] end
 
-function to_chess(r_i, f_i)
+local function to_chess(r_i, f_i)
     -- print('to_chess '..r_i..' '..f_i)
     local r_c = 9 - r_i
     local f_c = to_f_c(f_i)
     return f_c .. r_c
 end
 
-function to_i(coord)
+local function to_f_i(f_c)
+    local f_i = ({a = 1, b = 2, c = 3, d = 4, e = 5, f = 6, g = 7, h = 8})[f_c]
+    return f_i
+end
+
+local function to_i(coord)
     -- print('to_i '..coord)
     local f_c = coord:sub(1, 1)
     local r_c = tonumber(coord:sub(2, 2))
@@ -38,12 +43,7 @@ function to_i(coord)
     return res
 end
 
-function to_f_i(f_c)
-    local f_i = ({a = 1, b = 2, c = 3, d = 4, e = 5, f = 6, g = 7, h = 8})[f_c]
-    return f_i
-end
-
-function find_pawn(player, f_c, b)
+local function find_pawn(player, f_c, b)
     print('find_pawn ' .. player .. ' ' .. f_c)
     local f_i = to_f_i(f_c)
     local s = 1
@@ -75,13 +75,13 @@ function find_pawn(player, f_c, b)
     return nil
 end
 
-function find_piece(piece, player, coord)
+local function find_piece(piece, player, coord)
     print("Can't find piece '" .. piece .. "' for player " .. player ..
               " that can move to coord " .. coord)
     return nil
 end
 
-function parse_alg(input, player, board)
+local function parse_alg(input, player, board)
     -- move pawn
     print('Parsing move')
     local from = nil
@@ -99,7 +99,7 @@ function parse_alg(input, player, board)
     return {from = from, dest = input}
 end
 
-function play()
+local function play()
     local board = new_board()
     print("Welcome to Command Line Chess :)\n")
     while (true) do
