@@ -1,10 +1,10 @@
 -- b[1][2] is h2
 local function new_board()
     return {
-        {'R2', 'N2', 'B2', 'Q2', 'K2', 'B2', 'N2', 'R2'},
-        {'P2', 'P2', 'P2', 'P2', 'P2', 'P2', 'P2', 'P2'}, {}, {}, {}, {},
-        {'P1', 'P1', 'P1', 'P1', 'P1', 'P1', 'P1', 'P1'},
-        {'R1', 'N1', 'B1', 'Q1', 'K1', 'B1', 'N1', 'R1'}
+        { 'R2', 'N2', 'B2', 'Q2', 'K2', 'B2', 'N2', 'R2' },
+        { 'P2', 'P2', 'P2', 'P2', 'P2', 'P2', 'P2', 'P2' }, {}, {}, {}, {},
+        { 'P1', 'P1', 'P1', 'P1', 'P1', 'P1', 'P1', 'P1' },
+        { 'R1', 'N1', 'B1', 'Q1', 'K1', 'B1', 'N1', 'R1' }
     }
 end
 
@@ -20,7 +20,7 @@ local function print_board(b)
     io.write('\n')
 end
 
-local function to_f_c(f_i) return ({'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'})[f_i] end
+local function to_f_c(f_i) return ({ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' })[f_i] end
 
 local function to_chess(r_i, f_i)
     -- print('to_chess '..r_i..' '..f_i)
@@ -30,7 +30,7 @@ local function to_chess(r_i, f_i)
 end
 
 local function to_f_i(f_c)
-    local f_i = ({a = 1, b = 2, c = 3, d = 4, e = 5, f = 6, g = 7, h = 8})[f_c]
+    local f_i = ({ a = 1, b = 2, c = 3, d = 4, e = 5, f = 6, g = 7, h = 8 })[f_c]
     return f_i
 end
 
@@ -38,7 +38,7 @@ local function to_i(coord)
     -- print('to_i '..coord)
     local f_c = coord:sub(1, 1)
     local r_c = tonumber(coord:sub(2, 2))
-    local res = {f_i = to_f_i(f_c), r_i = 9 - r_c}
+    local res = { f_i = to_f_i(f_c), r_i = 9 - r_c }
     -- print ('res '..res.r_i..' '..res.f_i)
     return res
 end
@@ -66,7 +66,7 @@ local function find_pawn(player, f_c, b)
         end
         io.write('\n')
         if (piece and piece:sub(1, 1) == 'P' and piece:sub(2, 2) ==
-            tostring(player)) then
+                tostring(player)) then
             local coord = to_chess(r_i, f_i)
             print('Found pawn at ' .. coord)
             return coord
@@ -77,7 +77,7 @@ end
 
 local function find_piece(piece, player, coord)
     print("Can't find piece '" .. piece .. "' for player " .. player ..
-              " that can move to coord " .. coord)
+        " that can move to coord " .. coord)
     return nil
 end
 
@@ -96,7 +96,7 @@ local function parse_alg(input, player, board)
         from = find_piece(piece, 1, coord)
     end
     if (from == nil) then return nil end
-    return {from = from, dest = input}
+    return { from = from, dest = input }
 end
 
 local function play()

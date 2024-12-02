@@ -1,6 +1,6 @@
 {
     "recommendations": [
         "github.vscode-pull-request-github",
-        "koihik.vscode-lua-format"
+        "sumneko.lua"
     ]
 }
