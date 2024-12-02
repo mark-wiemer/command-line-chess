@@ -1,4 +1,4 @@
-# Command Line Chess (in Lua)
+# Hello Lua with CLI Chess
 
 A simple chess program to learn Lua.
 
